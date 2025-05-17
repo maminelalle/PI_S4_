@@ -1,0 +1,78 @@
+<!-- {% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="form-header"></div>
+        <h2 class="title-register">Créer un compte</h2>
+
+        {% if messages %}
+        <div id="messages">
+            {% for message in messages %}
+                <p class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="input-box">
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="error-message">{{ field.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn-submit">S'inscrire</button>
+        </form>
+    </div>
+</body>
+</html> -->
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="form-header">
+            <a href="{% url 'login' %}" class="form-header-link">Se connecter</a>
+        </div>
+
+        {% if messages %}
+        <div id="messages">
+            {% for message in messages %}
+                <p class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="input-box">
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="error-message">{{ field.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn-submit">S'inscrire</button>
+        </form>
+        <div class="switch-form">
+            <p>Déjà un compte ? <a href="{% url 'login' %}">Connectez-vous</a></p>
+        </div>
+    </div>
+</body>
+</html>

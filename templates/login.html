@@ -1,0 +1,64 @@
+<!-- {% load static %}  
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+        <div class="text-center">
+            <p>Pas encore de compte ? <a href="{% url 'register' %}" class="text-link">Inscrivez-vous ici</a></p>
+        </div>
+    </div>
+</body>
+</html> -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="form-header">
+            <a href="{% url 'register' %}" class="form-header-link">S'inscrire</a>
+        </div>
+
+        {% if messages %}
+        <div id="messages">
+            {% for message in messages %}
+                <p class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="input-box">
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="error-message">{{ field.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn-submit">Se connecter</button>
+        </form>
+        <div class="switch-form">
+            <p>Pas encore de compte ? <a href="{% url 'register' %}" class="text-link">Inscrivez-vous ici</a></p>
+        </div>
+    </div>
+</body>
+</html>
