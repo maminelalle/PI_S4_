@@ -59,9 +59,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'freelance_db',
         'USER': 'freelance_user',
-        'PASSWORD': '20242025',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '5433',
     }
 }
 
